@@ -50,12 +50,17 @@ export function updateDateRows(): void {
       continue
     }
 
+    // 追加するべき行数の決定（MAX_DAYS_LENGTH日分先の日付〜最後の行に存在する日付の差）
     const lengthToInsert = Math.ceil(
       (today.getTime() + MAX_DAYS_LENGTH * DAY_MS - lastValue.getTime()) /
         DAY_MS
     )
+
+    // 1行以上追加がある
     if (lengthToInsert > 0) {
       const rows: Date[][] = []
+
+      // 追加する日付データの生成
       for (let i = 0; i < lengthToInsert; i++) {
         rows.push([new Date(lastValue.getTime() + DAY_MS * (i + 1))])
       }
