@@ -8,7 +8,7 @@ const TZ_OFFSET_MS = 9 * 60 * 60 * 1000
 const MAX_DAYS_LENGTH = 31
 
 /**
- * 与えられたDateを日単位に切り下げる
+ * 与えられたDateを日本時間での日単位に切り下げる
  * @param d 入力値 - 省略時は現在時刻
  * @returns 新しいDateオブジェクト
  */
