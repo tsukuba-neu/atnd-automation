@@ -7,13 +7,6 @@ const TZ_OFFSET_MS = 9 * 60 * 60 * 1000
 /** 一度に保持する最大行数 */
 const MAX_DAYS_LENGTH = 31
 
-export enum Attendance {
-  FREE = '◯',
-  UNSTABLE = '△',
-  BUSY = '✕',
-  NG = '✕✕',
-}
-
 /**
  * 与えられたDateを日単位に切り下げる
  * @param d 入力値 - 省略時は現在時刻
@@ -125,34 +118,5 @@ export function updateDateRows(): void {
         offset--
       }
     }
-  }
-}
-
-/**
- * 出欠を判定して表示用の値を返す
- * @param free ◯欄の値
- * @param unstable △欄の値
- * @param busy ✕欄の値
- * @param ng ✕✕欄の値
- * @param memo 備考欄の値
- * @returns ◯✕/備考
- */
-export function ATND_VALUE(
-  free: boolean,
-  unstable: boolean,
-  busy: boolean,
-  ng: boolean,
-  memo: string
-): number | string {
-  if (ng) {
-    return Attendance.NG
-  } else if (busy) {
-    return Attendance.BUSY
-  } else if (unstable) {
-    return memo
-  } else if (free) {
-    return Attendance.FREE
-  } else {
-    return '-'
   }
 }
