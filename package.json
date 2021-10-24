@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "format": "prettier --write **/*.{json,ts,md}",
+    "format": "prettier --write **/*.{json,ts,md,html}",
     "lint": "eslint src",
     "lintfix": "eslint --fix src",
     "prepare": "husky install"
@@ -23,6 +23,6 @@
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix",
-    "*.{json,ts,md}": "prettier --write"
+    "*.{json,ts,md,html}": "prettier --write"
   }
 }
