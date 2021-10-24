@@ -6,11 +6,11 @@ Google スプレッドシートで構築する予定調査の更新を自動化�
 
 ## Features
 
-### 日付ベースの行を自動更新（`updateDateRows()`）
+### 日付ベースの行を自動更新 `updateDateRows()`
 
 A 列に日付を含むシートについて、過去の日付の行を削除し、`MAX_DAYS_LENGTH`（コード内で定義する変数）日先までの行を追加する。
 
-### リマインダの送信
+### リマインダの送信 `triggerScheduleReminder()`
 
 1 枚目のシートを`overview`とし、当日に活動予定があれば Slack の Webhook 経由でリマインドする。
 
