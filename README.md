@@ -22,11 +22,13 @@ yarn
 
 ### Apps Script プロジェクトの準備
 
-Apps Script プロジェクトを準備し、ローカルのリポジトリを接続する。
+Apps Script プロジェクトを準備し、以下の内容の`.clasp.json`を作成してローカルのリポジトリを接続する。
 
-```sh
-clasp settings scriptId [PROJECT_ID]
-clasp settings rootDir src
+```json
+{
+  "scriptId": "YOUR_SCRIPT_ID",
+  "rootDir": "src"
+}
 ```
 
 プロジェクト ID は以下の手順で確認できる。
@@ -43,3 +45,9 @@ clasp push
 ### 自動実行の設定
 
 必要な機能の関数に[トリガーを設定](https://developers.google.com/apps-script/guides/triggers/installable#managing_triggers_manually)することで、時間ベースで自動的に実行させることができる。
+
+## Troubleshoot
+
+### `ENOENT: no such file or directory, open '/home/nandenjin/.clasprc.json'`
+
+clasp へのログインができていない。`clasp login`でログイン操作をする。
