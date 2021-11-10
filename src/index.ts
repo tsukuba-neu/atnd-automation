@@ -1,5 +1,6 @@
 export enum PropertiesKey {
   slackWebhookUrl = 'slack_webhook_url',
+  slackOAuthToken = 'slack_oauth_token',
 }
 
 /**
@@ -18,11 +19,13 @@ export function doGet(): GoogleAppsScript.HTML.HtmlOutput {
  */
 export function handleUpdateFromWebUI({
   slackWebhookUrl,
+  slackOAuthToken,
 }: {
   slackWebhookUrl: string
+  slackOAuthToken: string
 }): void {
-  PropertiesService.getScriptProperties().setProperty(
-    PropertiesKey.slackWebhookUrl,
-    slackWebhookUrl
-  )
+  PropertiesService.getScriptProperties().setProperties({
+    [PropertiesKey.slackWebhookUrl]: slackWebhookUrl,
+    [PropertiesKey.slackOAuthToken]: slackOAuthToken,
+  })
 }
