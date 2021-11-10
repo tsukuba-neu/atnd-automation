@@ -1,4 +1,5 @@
 import { PropertiesKey } from '.'
+import { UsersListResponse } from '@slack/web-api'
 
 export function triggerScheduleReminder(): void {
   const now = new Date()
@@ -79,6 +80,26 @@ export function triggerScheduleReminder(): void {
     }
   }
 
+  // SlackからユーザーIDを取得する
+  const slackOAuthToken = PropertiesService.getScriptProperties().getProperty(
+    PropertiesKey.slackOAuthToken
+  )
+  const usersListRes = UrlFetchApp.fetch('https://slack.com/api/users.list', {
+    method: 'post',
+    payload: {
+      token: slackOAuthToken,
+    },
+  })
+  const { members } = JSON.parse(
+    usersListRes.getContentText()
+  ) as UsersListResponse
+  const getUserMention = (displayName: string) => {
+    const member = members.find(
+      member => member.profile.display_name === displayName
+    )
+    return member ? `<@${member.id}>` : displayName
+  }
+
   // Slackに送信する
   UrlFetchApp.fetch(slackWebhookUrl, {
     method: 'post',
@@ -98,11 +119,13 @@ export function triggerScheduleReminder(): void {
             
             :o: ${attendees
               .filter(a => a.mode === 'attend')
-              .map(a => a.name)
+              .map(a => getUserMention(a.name))
               .join('・')}
             ${attendees
               .filter(a => a.mode === 'other')
-              .map(a => `:thinking_face: ${a.name} - ${a.message}`)
+              .map(
+                a => `:thinking_face: ${getUserMention(a.name)} - ${a.message}`
+              )
               .join('\n')}
             :x: ${attendees
               .filter(a => a.mode === 'absent')
