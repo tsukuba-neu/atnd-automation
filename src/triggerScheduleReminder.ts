@@ -81,13 +81,14 @@ export function triggerScheduleReminder(): void {
   }
 
   // SlackからユーザーIDを取得する
-  const slackOAuthToken = PropertiesService.getScriptProperties().getProperty(
-    PropertiesKey.slackOAuthToken
-  )
+  const slackBotUserOAuthToken =
+    PropertiesService.getScriptProperties().getProperty(
+      PropertiesKey.slackBotUserOAuthToken
+    )
   const usersListRes = UrlFetchApp.fetch('https://slack.com/api/users.list', {
     method: 'post',
     payload: {
-      token: slackOAuthToken,
+      token: slackBotUserOAuthToken,
     },
   })
   const { members } = JSON.parse(

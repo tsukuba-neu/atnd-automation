@@ -29,14 +29,14 @@
           </td>
         </tr>
         <tr>
-          <th>Slack OAuth Token</th>
+          <th>Slack Bot User OAuth Token</th>
           <td>
             <input
               type="url"
-              value="<?= PropertiesService.getScriptProperties().getProperty('slack_oauth_token') ?>"
+              value="<?= PropertiesService.getScriptProperties().getProperty('slack_bot_user_oauth_token') ?>"
               size="80"
               placeholder="xoxb-XXXXXXXXXXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXX"
-              id="slack-oauth-tokens"
+              id="slack-bot-user-oauth-tokens"
             />
           </td>
         </tr>
@@ -47,8 +47,9 @@
       function update() {
         const slackWebhookUrl =
           document.getElementById('slack-webhook-url').value
-        const slackOAuthToken =
-          document.getElementById('slack-oauth-token').value
+        const slackBotUserOAuthToken = document.getElementById(
+          'slack-bot-user-oauth-token'
+        ).value
 
         google.script.run
           .withSuccessHandler(() => {
@@ -58,7 +59,7 @@
             alert('更新に失敗しました。\n\n' + e.message)
             console.error(e)
           })
-          .handleUpdateFromWebUI({ slackWebhookUrl, slackOAuthToken })
+          .handleUpdateFromWebUI({ slackWebhookUrl, slackBotUserOAuthToken })
       }
     </script>
   </body>
