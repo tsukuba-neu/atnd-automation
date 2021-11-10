@@ -18,7 +18,7 @@ A 列に日付を含むシートについて、過去の日付の行を削除し
 - 1 列目を日付列とし、当日の日付がある行のうちもっとも上にあるものをピックアップする。
 - 活動予定行に記載があれば、個人の予定と合わせてリマインドする。
 
-Webhook の URL は Web アプリとしてデプロイすると設定が可能。
+[Webhook](https://api.slack.com/messaging/webhooks) の URL、ユーザー名取得のための[Bot User OAuth Token](https://api.slack.com/authentication/token-types)は Web アプリとしてデプロイすると設定が可能。
 
 ## Usage
 
